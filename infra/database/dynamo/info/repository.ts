@@ -12,7 +12,7 @@ export function createInfoStandRepository(): InfoStandRepository {
                 const result = await dynamo.send(new ScanCommand({
                     TableName: env.tableInfoStands,
                 }));
-                return (result.Items ?? []) as InfoStand[];
+                return (result.Items ?? []).filter(item => item.rarity != null) as InfoStand[];
             });
         },
     };

@@ -1,6 +1,7 @@
 import type { ItemRepository } from "@domain/item/ports/repository.ts";
 import type { ItemAnnouncer } from "@domain/item/ports/announcer.ts";
 import type { InfoStandRepository } from "@domain/stand/ports/infoRepository.ts";
+import type { InfoShinyRepository } from "@domain/stand/ports/infoShinyRepository.ts";
 import type { StandRepository } from "@domain/stand/ports/standRepository.ts";
 import type { InventoryRepository } from "@domain/stand/ports/inventoryRepository.ts";
 import type { ActiveStandRepository } from "@domain/stand/ports/activeStandRepository.ts";
@@ -9,6 +10,7 @@ import type { StandAnnouncer } from "@domain/stand/ports/announcer.ts";
 import { createItemRepository } from "@infra/database/kv/item/repository.ts";
 import { createItemAnnouncer } from "@infra/discord/announcers/item.ts";
 import { createInfoStandRepository } from "@infra/database/dynamo/info/repository.ts";
+import { createInfoShinyRepository } from "@infra/database/dynamo/info-shiny/repository.ts";
 import { createStandRepository } from "@infra/database/dynamo/stand/repository.ts";
 import { createInventoryRepository } from "@infra/database/dynamo/inventory/repository.ts";
 import { createActiveStandRepository } from "@infra/database/kv/stand/repository.ts";
@@ -24,6 +26,10 @@ export function itemAnnouncer(): ItemAnnouncer {
 
 export function infoRepository(): InfoStandRepository {
     return createInfoStandRepository();
+}
+
+export function infoShinyRepository(): InfoShinyRepository {
+    return createInfoShinyRepository();
 }
 
 export function standRepository(): StandRepository {
