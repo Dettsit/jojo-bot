@@ -11,8 +11,14 @@ const rawClient = new DynamoDBClient({
 
 const stands = [
     // ── Parte 3: Stardust Crusaders ────────────────────────────────────────────
-    { id: "dark-blue-moon", name: "Dark Blue Moon", part: 3, rarity: "common", weight: 100, can_be_shiny: false, can_evolve: false, image: "https://static.wikia.nocookie.net/jjba/images/7/7e/Dark_Blue_Moon_Anime.png" },
-    { id: "ebony-devil", name: "Ebony Devil", part: 3, rarity: "common", weight: 100, can_be_shiny: false, can_evolve: false, image: "https://static.wikia.nocookie.net/jjba/images/a/a5/Ebony_Devil_Anime.png" },
+    { id: "anubis", name: "Anubis", part: 3, rarity: "epic", weight: 25, can_be_shiny: true, can_evolve: false, image: "https://static.jojowiki.com/images/6/64/latest/20220916183812/Anubis_Infobox_Anime.png" },
+    { id: "atum", name: "Atum", part: 3, rarity: "rare", weight: 60, can_be_shiny: true, can_evolve: false, image: "https://static.jojowiki.com/images/5/50/latest/20211114224746/Atum_Infobox_Anime.png" },
+    { id: "bastet", name: "Bastet", part: 3, rarity: "uncommon", weight: 75, can_be_shiny: false, can_evolve: false, image: "https://static.jojowiki.com/images/d/dd/latest/20211010231924/Bastet_Infobox_Anime.png" },
+    { id: "cream", name: "Cream", part: 3, rarity: "legendary", weight: 5, can_be_shiny: true, can_evolve: false, image: "https://static.jojowiki.com/images/7/7f/latest/20220916193130/Cream_Infobox_Anime.png" },
+    { id: "dark-blue-moon", name: "Dark Blue Moon", part: 3, rarity: "rare", weight: 60, can_be_shiny: true, can_evolve: false, image: "https://static.jojowiki.com/images/7/73/latest/20251210224929/OraDora_Dark_Blue_Moon_1.png" },
+    { id: "death13", name: "Death 13", part: 3, rarity: "legendary", weight: 5, can_be_shiny: true, can_evolve: false, image: "https://static.jojowiki.com/images/b/be/latest/20221008023351/Death_Thirteen_Infobox_Anime.png" },
+    { id: "ebony-devil", name: "Ebony Devil", part: 3, rarity: "uncommon", weight: 75, can_be_shiny: false, can_evolve: false, image: "https://static.jojowiki.com/images/7/77/latest/20220920020932/Ebony_Devil_Infobox_Anime.png" },
+    { id: "emperor", name: "Emperor", part: 3, rarity: "uncommon", weight: 75, can_be_shiny: false, can_evolve: false, image: "https://static.jojowiki.com/images/7/77/latest/20220920020932/Ebony_Devil_Infobox_Anime.png" },
     { id: "hermit-purple", name: "Hermit Purple", part: 3, rarity: "uncommon", weight: 40, can_be_shiny: false, can_evolve: false, image: "https://static.wikia.nocookie.net/jjba/images/5/5b/Hermit_Purple_Anime.png" },
     { id: "hierophant-green", name: "Hierophant Green", part: 3, rarity: "rare", weight: 15, can_be_shiny: true, can_evolve: false, image: "https://static.wikia.nocookie.net/jjba/images/2/2e/Hierophant_Green_Anime.png" },
     { id: "justice", name: "Justice", part: 3, rarity: "common", weight: 100, can_be_shiny: false, can_evolve: false, image: "https://static.wikia.nocookie.net/jjba/images/d/d9/Justice_Anime.png" },
