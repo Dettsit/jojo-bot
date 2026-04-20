@@ -45,6 +45,14 @@ export async function handleInteraction(req: Request, span: Span): Promise<Respo
         return new Response("Bad Request", { status: 400 });
     }
 
+    if (interaction.type === InteractionType.APPLICATION_COMMAND && interaction.data?.name === "ping") {
+        span.end();
+        return Response.json({
+            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+            data: { content: "pong", flags: 64 },
+        });
+    }
+
     if (interaction.type === InteractionType.APPLICATION_COMMAND && interaction.data?.name === "pegar") {
         const token = interaction.token as string;
         const appId = interaction.application_id as string;

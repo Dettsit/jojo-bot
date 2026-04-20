@@ -2,6 +2,10 @@ import { env } from "@config/env.ts";
 
 const commands = [
     {
+        name: "ping",
+        description: "Verifica se o bot está online.",
+    },
+    {
         name: "pegar",
         description: "Pega o item ativo no canal antes que desapareça.",
     },
