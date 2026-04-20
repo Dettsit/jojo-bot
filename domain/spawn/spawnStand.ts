@@ -15,7 +15,7 @@ export async function spawnStand(deps: Deps): Promise<SpawnStandResult> {
     const current = await deps.repository.last();
     const now = Temporal.Now.instant();
 
-    const check = shouldResolveSpawn(now, current);
+    const check = shouldResolveSpawn(now, current, 5 * 60 * 1000);
     if (!check.should) {
         return { status: "skipped", reason: "probability", probability: check.probability, elapsedMs: check.elapsedMs };
     }
