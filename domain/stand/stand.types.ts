@@ -14,7 +14,8 @@ export type InfoStand = {
     rarity: Rarity;
     weight: number;
     can_be_shiny: boolean;
-    image?: string;
+    image: string;
+    part: number;
     can_evolve: boolean;
     evolution_item?: string;
 };
