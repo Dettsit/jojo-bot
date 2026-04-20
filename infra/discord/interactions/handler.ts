@@ -9,7 +9,7 @@ import { env } from "@config/env.ts";
 import { traced } from "@infra/telemetry.ts";
 import { handlePegar } from "@messages/pegar/handle.ts";
 import { handleObterStand } from "@messages/obter-stand/handle.ts";
-import { itemRepository, inventoryRepository, activeStandRepository, standRepository } from "@config/container.ts";
+import { itemRepository, inventoryRepository, activeStandRepository, standRepository, infoShinyRepository } from "@config/container.ts";
 
 export async function handleInteraction(req: Request, span: Span): Promise<Response> {
     if (req.method !== "POST") {
@@ -110,6 +110,7 @@ export async function handleInteraction(req: Request, span: Span): Promise<Respo
                     const { description, ephemeral, image } = await handleObterStand(userId, {
                         activeStandRepository: activeStandRepository(),
                         standRepository: standRepository(),
+                        infoShinyRepository: infoShinyRepository(),
                     });
 
                     const embed: Record<string, unknown> = { color: 0x9b59b6, description };

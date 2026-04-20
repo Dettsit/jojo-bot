@@ -8,5 +8,4 @@ export const RARITY_WEIGHTS: Record<Rarity, number> = {
     legendary: 1,
 };
 
-export const SHINY_RARITIES: Rarity[] = ["rare", "epic", "legendary"];
 export const SHINY_RATE = 0.05;

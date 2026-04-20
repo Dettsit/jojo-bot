@@ -1,11 +1,13 @@
 import { obtainStand } from "@domain/obtain/obtainStand.ts";
 import type { ActiveStandRepository } from "@domain/stand/ports/activeStandRepository.ts";
 import type { StandRepository } from "@domain/stand/ports/standRepository.ts";
+import type { InfoShinyRepository } from "@domain/stand/ports/infoShinyRepository.ts";
 import { RARITY_LABEL } from "@domain/stand/stand.types.ts";
 
 type Deps = {
     activeStandRepository: ActiveStandRepository;
     standRepository: StandRepository;
+    infoShinyRepository: InfoShinyRepository;
 };
 
 export type ObterStandResult = {
