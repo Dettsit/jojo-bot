@@ -6,6 +6,7 @@ export const env = {
     tableInfoStands: Deno.env.get("DYNAMO_TABLE_INFO_STANDS") ?? "jojo-bot-info-stands",
     tableOwnedStands: Deno.env.get("DYNAMO_TABLE_OWNED_STANDS") ?? "jojo-bot-owned-stands",
     tableInventory: Deno.env.get("DYNAMO_TABLE_INVENTORY") ?? "jojo-bot-inventory",
+    discordAppId: Deno.env.get("DISCORD_APP_ID") ?? "",
     discordBotToken: Deno.env.get("DISCORD_BOT_TOKEN") ?? "",
     discordChannelId: Deno.env.get("DISCORD_CHANNEL_ID") ?? "",
     discordPublicKey: Deno.env.get("DISCORD_PUBLIC_KEY") ?? "",

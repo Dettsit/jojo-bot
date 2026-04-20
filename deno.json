@@ -2,7 +2,8 @@
   "unstable": ["kv", "otel"],
   "tasks": {
     "dev": "deno run --env-file=.env --unstable-cron --unstable-otel --allow-net --allow-env --allow-sys=osRelease --allow-read=/.dockerenv --watch main.ts",
-    "seed": "deno run --env-file=.env --allow-net --allow-env seed.ts"
+    "seed": "deno run --env-file=.env --allow-net --allow-env seed.ts",
+    "register": "deno run --env-file=.env --allow-net --allow-env register-commands.ts"
   },
   "imports": {
     "@config/": "./config/",
