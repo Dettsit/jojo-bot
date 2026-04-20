@@ -1,6 +1,13 @@
-import { PutCommand, CreateTableCommand, ListTablesCommand } from "@aws-sdk/lib-dynamodb";
+import { PutCommand } from "@aws-sdk/lib-dynamodb";
+import { DynamoDBClient, CreateTableCommand, ListTablesCommand } from "@aws-sdk/client-dynamodb";
 import { dynamo } from "@config/dynamo.ts";
 import { env } from "@config/env.ts";
+
+const rawClient = new DynamoDBClient({
+    region: env.awsRegion,
+    ...(env.dynamoEndpoint ? { endpoint: env.dynamoEndpoint } : {}),
+    credentials: { accessKeyId: env.awsAccessKeyId, secretAccessKey: env.awsSecretAccessKey },
+});
 
 const stands = [
     // Lendárias
@@ -34,21 +41,31 @@ const stands = [
     { id: "dark-blue-moon", name: "Dark Blue Moon", rarity: "common", weight: 100, can_be_shiny: false, can_evolve: false },
 ];
 
-async function ensureTable() {
-    const { TableNames } = await dynamo.send(new ListTablesCommand({}));
-    if (TableNames?.includes(env.tableInfoStands)) return;
+async function ensureTable(name: string, keys: { hash: string; range?: string }) {
+    const { TableNames } = await rawClient.send(new ListTablesCommand({}));
+    if (TableNames?.includes(name)) return;
 
-    await dynamo.send(new CreateTableCommand({
-        TableName: env.tableInfoStands,
-        KeySchema: [{ AttributeName: "id", KeyType: "HASH" }],
-        AttributeDefinitions: [{ AttributeName: "id", AttributeType: "S" }],
+    const keySchema = [{ AttributeName: keys.hash, KeyType: "HASH" as const }];
+    const attrDefs = [{ AttributeName: keys.hash, AttributeType: "S" as const }];
+
+    if (keys.range) {
+        keySchema.push({ AttributeName: keys.range, KeyType: "RANGE" as const });
+        attrDefs.push({ AttributeName: keys.range, AttributeType: "S" as const });
+    }
+
+    await rawClient.send(new CreateTableCommand({
+        TableName: name,
+        KeySchema: keySchema,
+        AttributeDefinitions: attrDefs,
         BillingMode: "PAY_PER_REQUEST",
     }));
 
-    console.log(`Tabela ${env.tableInfoStands} criada.`);
+    console.log(`Tabela ${name} criada.`);
 }
 
-await ensureTable();
+await ensureTable(env.tableInfoStands, { hash: "id" });
+await ensureTable(env.tableOwnedStands, { hash: "pk", range: "sk" });
+await ensureTable(env.tableInventory, { hash: "pk", range: "sk" });
 
 for (const stand of stands) {
     await dynamo.send(new PutCommand({

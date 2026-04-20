@@ -14,7 +14,7 @@ export function createStandRepository(): StandRepository {
 
                 await dynamo.send(new PutCommand({
                     TableName: env.tableOwnedStands,
-                    Item: { PK: stand.user, SK: id, ...stand, created_at: created_at.toISOString() },
+                    Item: { pk: stand.user, sk: id, ...stand, created_at: created_at.toISOString() },
                 }));
 
                 return { ...stand, created_at };
@@ -25,7 +25,7 @@ export function createStandRepository(): StandRepository {
             return traced("dynamo.stand.findByUser", async () => {
                 const result = await dynamo.send(new QueryCommand({
                     TableName: env.tableOwnedStands,
-                    KeyConditionExpression: "PK = :pk",
+                    KeyConditionExpression: "pk = :pk",
                     ExpressionAttributeValues: { ":pk": userId },
                 }));
 
@@ -34,7 +34,7 @@ export function createStandRepository(): StandRepository {
                     name: item.name,
                     rarity: item.rarity,
                     shiny: item.shiny,
-                    user: item.PK,
+                    user: item.pk,
                     created_at: new Date(item.created_at),
                 })) as OwnedStand[];
             });

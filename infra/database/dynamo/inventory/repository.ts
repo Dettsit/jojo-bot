@@ -11,7 +11,7 @@ export function createInventoryRepository(): InventoryRepository {
             await traced("dynamo.inventory.addItem", async () => {
                 await dynamo.send(new UpdateCommand({
                     TableName: env.tableInventory,
-                    Key: { PK: userId, SK: type },
+                    Key: { pk: userId, sk: type },
                     UpdateExpression: "SET #count = if_not_exists(#count, :zero) + :inc",
                     ExpressionAttributeNames: { "#count": "count" },
                     ExpressionAttributeValues: { ":inc": 1, ":zero": 0 },
@@ -24,7 +24,7 @@ export function createInventoryRepository(): InventoryRepository {
                 try {
                     await dynamo.send(new UpdateCommand({
                         TableName: env.tableInventory,
-                        Key: { PK: userId, SK: type },
+                        Key: { pk: userId, sk: type },
                         UpdateExpression: "SET #count = #count - :dec",
                         ConditionExpression: "#count > :zero",
                         ExpressionAttributeNames: { "#count": "count" },
@@ -42,7 +42,7 @@ export function createInventoryRepository(): InventoryRepository {
             return traced("dynamo.inventory.getCount", async () => {
                 const result = await dynamo.send(new GetCommand({
                     TableName: env.tableInventory,
-                    Key: { PK: userId, SK: type },
+                    Key: { pk: userId, sk: type },
                 }));
                 return result.Item?.count ?? 0;
             });
