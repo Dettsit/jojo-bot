@@ -8,12 +8,22 @@ export const RARITY_LABEL: Record<Rarity, string> = {
     legendary: "🟡 Lendária",
 };
 
+export type ShinyVariant = {
+    id: string;
+    weight: number;
+};
+
+export type InfoShiny = {
+    id: string;
+    image: string;
+};
+
 export type InfoStand = {
     id: string;
     name: string;
     rarity: Rarity;
     weight: number;
-    can_be_shiny: boolean;
+    shinies: ShinyVariant[];
     image: string;
     part: number;
     can_evolve: boolean;
@@ -24,7 +34,7 @@ export type OwnedStand = {
     stand_id: string;
     name: string;
     rarity: Rarity;
-    shiny: boolean;
+    shiny: string | null;
     user: string;
     created_at: Date;
 };
