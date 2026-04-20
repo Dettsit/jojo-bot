@@ -22,12 +22,15 @@ async function announceAppear(stand: ActiveStand): Promise<void> {
     if (!stand.value) return;
 
     const { name, rarity, image } = stand.value;
+    const isHighRarity = rarity === "epic" || rarity === "legendary";
+    const rarityLine = rarity !== "common" ? `\nRaridade: ${RARITY_LABEL[rarity]}` : "";
 
     await post({
+        content: isHighRarity ? "@everyone" : undefined,
         embeds: [{
             color: 0x9b59b6,
             title: `Uma Stand apareceu!`,
-            description: `**${name}**\nRaridade: ${RARITY_LABEL[rarity]}\n\nDigite **/obter-stand** para reclamá-la!`,
+            description: `**${name}**${rarityLine}\n\nDigite **/obter-stand** para reclamá-la!`,
             image: { url: image },
         }],
     });

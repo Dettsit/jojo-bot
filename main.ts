@@ -22,61 +22,72 @@ Deno.serve((req) => {
     return new Response("Not found", { status: 404 });
 });
 
-Deno.cron("Item spawn routine", "* 0-3,10-23 * * *", async () => {
+Deno.cron("Spawn routine", "* 0-3,10-23 * * *", async () => {
     log.info("tick");
 
     await traced("cron.spawn", async () => {
-        const result = await spawnItem({
-            announcer: itemAnnouncer(),
-            repository: itemRepository(),
+        const standRepo = activeStandRepository();
+        const itemRepo = itemRepository();
+
+        const [standState, itemState] = await Promise.all([
+            standRepo.last(),
+            itemRepo.last(),
+        ]);
+
+        if (standState.value) {
+            const result = await spawnStand({
+                announcer: standAnnouncer(),
+                repository: standRepo,
+                infoRepository: infoRepository(),
+            });
+            if (result.status === "ran-away") log.info(`stand ran away: ${result.stand}`);
+            return;
+        }
+
+        if (itemState.value) {
+            const result = await spawnItem({
+                announcer: itemAnnouncer(),
+                repository: itemRepo,
+            });
+            if (result.status === "ran-away") log.info(`item ran away: ${result.item}`);
+            return;
+        }
+
+        const standResult = await spawnStand({
+            announcer: standAnnouncer(),
+            repository: standRepo,
+            infoRepository: infoRepository(),
         });
 
-        switch (result.status) {
+        if (standResult.status === "spawned") {
+            log.info(`stand spawned: ${standResult.stand}`);
+            return;
+        }
+
+        if (standResult.status === "skipped") {
+            log.info("stand skipped", {
+                probability: `${(standResult.probability * 100).toFixed(1)}%`,
+                elapsed: `${Math.round(standResult.elapsedMs / 1000)}s`,
+            });
+        }
+
+        const itemResult = await spawnItem({
+            announcer: itemAnnouncer(),
+            repository: itemRepo,
+        });
+
+        switch (itemResult.status) {
             case "skipped":
-                log.info("skipped", {
-                    probability: `${(result.probability * 100).toFixed(1)}%`,
-                    elapsed: `${Math.round(result.elapsedMs / 1000)}s`,
+                log.info("item skipped", {
+                    probability: `${(itemResult.probability * 100).toFixed(1)}%`,
+                    elapsed: `${Math.round(itemResult.elapsedMs / 1000)}s`,
                 });
                 break;
-            case "ran-away":
-                log.info(`ran away: ${result.item}`);
-                break;
             case "spawned":
-                log.info(`spawned: ${result.item}`);
+                log.info(`item spawned: ${itemResult.item}`);
                 break;
         }
     }).catch((e) => {
         log.error("unhandled error", { error: String(e) });
-    });
-});
-
-const logStand = logger("cron:spawn-stand");
-
-Deno.cron("Stand spawn routine", "* 0-3,10-23 * * *", async () => {
-    logStand.info("tick");
-
-    await traced("cron.spawn-stand", async () => {
-        const result = await spawnStand({
-            announcer: standAnnouncer(),
-            repository: activeStandRepository(),
-            infoRepository: infoRepository(),
-        });
-
-        switch (result.status) {
-            case "skipped":
-                logStand.info("skipped", {
-                    probability: `${(result.probability * 100).toFixed(1)}%`,
-                    elapsed: `${Math.round(result.elapsedMs / 1000)}s`,
-                });
-                break;
-            case "ran-away":
-                logStand.info(`ran away: ${result.stand}`);
-                break;
-            case "spawned":
-                logStand.info(`spawned: ${result.stand}`);
-                break;
-        }
-    }).catch((e) => {
-        logStand.error("unhandled error", { error: String(e) });
     });
 });
