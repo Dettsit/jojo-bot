@@ -9,7 +9,7 @@ import { env } from "@config/env.ts";
 import { traced } from "@infra/telemetry.ts";
 import { handlePegar } from "@messages/pegar/handle.ts";
 import { handleObterStand } from "@messages/obter-stand/handle.ts";
-import { itemRepository, inventoryRepository, infoRepository, standRepository } from "@config/container.ts";
+import { itemRepository, inventoryRepository, activeStandRepository, standRepository } from "@config/container.ts";
 
 export async function handleInteraction(req: Request, span: Span): Promise<Response> {
     if (req.method !== "POST") {
@@ -107,18 +107,20 @@ export async function handleInteraction(req: Request, span: Span): Promise<Respo
         queueMicrotask(context.bind(ctx, async () => {
             try {
                 await traced("interaction.obter-stand", async () => {
-                    const { description, ephemeral } = await handleObterStand(userId, {
-                        infoRepository: infoRepository(),
+                    const { description, ephemeral, image } = await handleObterStand(userId, {
+                        activeStandRepository: activeStandRepository(),
                         standRepository: standRepository(),
-                        inventoryRepository: inventoryRepository(),
                     });
+
+                    const embed: Record<string, unknown> = { color: 0x9b59b6, description };
+                    if (image) embed.thumbnail = { url: image };
 
                     await fetch(`https://discord.com/api/v10/webhooks/${appId}/${token}`, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
                             flags: ephemeral ? 64 : 0,
-                            embeds: [{ color: 0xc0392b, description }],
+                            embeds: [embed],
                         }),
                     });
                 });

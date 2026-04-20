@@ -1,28 +1,25 @@
 import { obtainStand } from "@domain/obtain/obtainStand.ts";
-import type { InfoStandRepository } from "@domain/stand/ports/infoRepository.ts";
+import type { ActiveStandRepository } from "@domain/stand/ports/activeStandRepository.ts";
 import type { StandRepository } from "@domain/stand/ports/standRepository.ts";
-import type { InventoryRepository } from "@domain/stand/ports/inventoryRepository.ts";
 import { RARITY_LABEL } from "@domain/stand/stand.types.ts";
 
 type Deps = {
-    infoRepository: InfoStandRepository;
+    activeStandRepository: ActiveStandRepository;
     standRepository: StandRepository;
-    inventoryRepository: InventoryRepository;
 };
 
-export async function handleObterStand(userId: string, deps: Deps): Promise<{ description: string; ephemeral: boolean }> {
+export type ObterStandResult = {
+    description: string;
+    ephemeral: boolean;
+    image?: string;
+};
+
+export async function handleObterStand(userId: string, deps: Deps): Promise<ObterStandResult> {
     const result = await obtainStand(userId, deps);
 
-    if (result.status === "no_arrow") {
+    if (result.status === "no_stand") {
         return {
-            description: "Você não tem uma 🏹 **Flecha de Stand**. Aguarde uma aparecer no canal e use **/pegar**!",
-            ephemeral: true,
-        };
-    }
-
-    if (result.status === "no_stands") {
-        return {
-            description: "Nenhuma Stand disponível no momento.",
+            description: "Nenhuma Stand apareceu ainda. Aguarde uma aparecer no canal!",
             ephemeral: true,
         };
     }
@@ -33,11 +30,12 @@ export async function handleObterStand(userId: string, deps: Deps): Promise<{ de
 
     return {
         description: [
-            `<@${userId}> foi perfurado pela Flecha de Stand!`,
+            `<@${userId}> reclamou uma Stand!`,
             "",
             `**${stand.name}${shinyTag}**`,
             `Raridade: ${rarity}`,
         ].join("\n"),
         ephemeral: false,
+        image: result.image,
     };
 }
