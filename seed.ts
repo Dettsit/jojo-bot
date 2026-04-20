@@ -16,19 +16,37 @@ const stands = [
     { id: "bastet", name: "Bastet", part: 3, rarity: "uncommon", weight: 75, can_be_shiny: false, can_evolve: false, image: "https://static.jojowiki.com/images/d/dd/latest/20211010231924/Bastet_Infobox_Anime.png" },
     { id: "cream", name: "Cream", part: 3, rarity: "legendary", weight: 5, can_be_shiny: true, can_evolve: false, image: "https://static.jojowiki.com/images/7/7f/latest/20220916193130/Cream_Infobox_Anime.png" },
     { id: "dark-blue-moon", name: "Dark Blue Moon", part: 3, rarity: "rare", weight: 60, can_be_shiny: true, can_evolve: false, image: "https://static.jojowiki.com/images/7/73/latest/20251210224929/OraDora_Dark_Blue_Moon_1.png" },
-    { id: "death13", name: "Death 13", part: 3, rarity: "legendary", weight: 5, can_be_shiny: true, can_evolve: false, image: "https://static.jojowiki.com/images/b/be/latest/20221008023351/Death_Thirteen_Infobox_Anime.png" },
+    { id: "death-13", name: "Death 13", part: 3, rarity: "legendary", weight: 5, can_be_shiny: true, can_evolve: false, image: "https://static.jojowiki.com/images/b/be/latest/20221008023351/Death_Thirteen_Infobox_Anime.png" },
     { id: "ebony-devil", name: "Ebony Devil", part: 3, rarity: "uncommon", weight: 75, can_be_shiny: false, can_evolve: false, image: "https://static.jojowiki.com/images/7/77/latest/20220920020932/Ebony_Devil_Infobox_Anime.png" },
-    { id: "emperor", name: "Emperor", part: 3, rarity: "uncommon", weight: 75, can_be_shiny: false, can_evolve: false, image: "https://static.jojowiki.com/images/7/77/latest/20220920020932/Ebony_Devil_Infobox_Anime.png" },
-    { id: "hermit-purple", name: "Hermit Purple", part: 3, rarity: "uncommon", weight: 40, can_be_shiny: false, can_evolve: false, image: "https://static.wikia.nocookie.net/jjba/images/5/5b/Hermit_Purple_Anime.png" },
-    { id: "hierophant-green", name: "Hierophant Green", part: 3, rarity: "rare", weight: 15, can_be_shiny: true, can_evolve: false, image: "https://static.wikia.nocookie.net/jjba/images/2/2e/Hierophant_Green_Anime.png" },
-    { id: "justice", name: "Justice", part: 3, rarity: "common", weight: 100, can_be_shiny: false, can_evolve: false, image: "https://static.wikia.nocookie.net/jjba/images/d/d9/Justice_Anime.png" },
-    { id: "magicians-red", name: "Magician's Red", part: 3, rarity: "rare", weight: 15, can_be_shiny: true, can_evolve: false, image: "https://static.wikia.nocookie.net/jjba/images/6/6f/Magicians_Red_Anime.png" },
-    { id: "silver-chariot", name: "Silver Chariot", part: 3, rarity: "rare", weight: 15, can_be_shiny: true, can_evolve: false, image: "https://static.wikia.nocookie.net/jjba/images/e/ec/Silver_Chariot_Anime.png" },
-    { id: "star-platinum", name: "Star Platinum", part: 3, rarity: "legendary", weight: 1, can_be_shiny: true, can_evolve: false, image: "https://static.wikia.nocookie.net/jjba/images/5/57/Star_Platinum_Anime.png" },
-    { id: "strength", name: "Strength", part: 3, rarity: "common", weight: 100, can_be_shiny: false, can_evolve: false, image: "https://static.wikia.nocookie.net/jjba/images/1/1e/Strength_Anime.png" },
-    { id: "the-world", name: "The World", part: 3, rarity: "legendary", weight: 1, can_be_shiny: true, can_evolve: false, image: "https://static.wikia.nocookie.net/jjba/images/c/c0/The_World_Anime.png" },
-
+    { id: "emperor", name: "Emperor", part: 3, rarity: "uncommon", weight: 75, can_be_shiny: false, can_evolve: false, image: "https://static.jojowiki.com/images/5/5d/latest/20220917022257/Emperor_Infobox_Anime.png" },
+    { id: "empress", name: "Empress", part: 3, rarity: "common", weight: 100, can_be_shiny: false, can_evolve: false, image: "https://static.jojowiki.com/images/c/c9/latest/20220917233428/Empress_Infobox_Anime.png" },
+    { id: "the-fool", name: "The Fool", part: 3, rarity: "epic", weight: 25, can_be_shiny: true, can_evolve: false, image: "https://static.jojowiki.com/images/1/10/latest/20210312225357/The_Fool_Infobox_Anime.png" },
+    { id: "geb", name: "Geb", part: 3, rarity: "rare", weight: 60, can_be_shiny: true, can_evolve: false, image: "https://static.jojowiki.com/images/2/26/latest/20220922192352/Geb_Infobox_Anime.png" },
+    { id: "hanged-man", name: "Hanged Man", part: 3, rarity: "epic", weight: 25, can_be_shiny: true, can_evolve: false, image: "https://static.jojowiki.com/images/1/1f/latest/20220917022046/Hanged_Man_Infobox_Anime.png " },
+    { id: "hermit-purple", name: "Hermit Purple", part: 3, rarity: "common", weight: 100, can_be_shiny: true, can_evolve: false, image: "https://static.jojowiki.com/images/0/0a/latest/20220922193045/Hermit_Purple_SC_Infobox_Anime.png" },
+    { id: "hierophant-green", name: "Hierophant Green", part: 3, rarity: "epic", weight: 25, can_be_shiny: true, can_evolve: false, image: "https://static.jojowiki.com/images/3/3e/latest/20210616200106/Hierophant_Green_Infobox_Anime.png" },
+    { id: "high-priestess", name: "High Priestess", part: 3, rarity: "uncommon", weight: 75, can_be_shiny: false, can_evolve: false, image: "https://static.jojowiki.com/images/1/1f/latest/20220920014856/High_Priestess_Infobox_Anime.png" },
+    { id: "horus", name: "Horus", part: 3, rarity: "epic", weight: 25, can_be_shiny: true, can_evolve: false, image: "https://static.jojowiki.com/images/d/d7/latest/20221008021726/Horus_Infobox_Anime.png" },
+    { id: "judgement", name: "Judgement", part: 3, rarity: "incommon", weight: 75, can_be_shiny: false, can_evolve: false, image: "https://static.jojowiki.com/images/a/af/latest/20220920211919/Judgement_Infobox_Anime.png" },
+    { id: "justice", name: "Justice", part: 3, rarity: "epic", weight: 25, can_be_shiny: true, can_evolve: false, image: "https://i.ibb.co/Kc61jqpt/image.png" },
+    { id: "khnum", name: "Khnum", part: 3, rarity: "uncommon", weight: 75, can_be_shiny: false, can_evolve: false, image: "https://static.jojowiki.com/images/1/1c/latest/20220920014323/Khnum_Infobox_Anime.png" },
+    { id: "lovers", name: "Lovers", part: 3, rarity: "common", weight: 100, can_be_shiny: false, can_evolve: false, image: "https://static.jojowiki.com/images/4/4a/latest/20220917022801/Lovers_Infobox_Anime.png" },
+    { id: "magicians-red", name: "Magician's Red", part: 3, rarity: "epic", weight: 25, can_be_shiny: true, can_evolve: false, image: "https://static.jojowiki.com/images/4/40/latest/20210725004739/Magician's_Red_Appearance.png" },
+    { id: "osiris", name: "Osiris", part: 3, rarity: "uncommon", weight: 75, can_be_shiny: false, can_evolve: false, image: "https://static.jojowiki.com/images/a/ae/latest/20221008021422/Osiris_Infobox_Anime.png" },
+    { id: "sethan", name: "Sethan", part: 3, rarity: "uncommon", weight: 75, can_be_shiny: false, can_evolve: false, image: "https://i.ibb.co/p9VyV5z/image.png" },
+    { id: "silver-chariot", name: "Silver Chariot", part: 3, rarity: "legendary", weight: 5, can_be_shiny: true, can_evolve: false, image: "https://static.jojowiki.com/images/8/80/latest/20251210223654/OraDora_Silver_Chariot_1.png" },
+    { id: "star-platinum", name: "Star Platinum", part: 3, rarity: "legendary", weight: 5, can_be_shiny: true, can_evolve: true, image: "https://static.jojowiki.com/images/7/72/latest/20250929180209/OraDora_Star_Platinum_1.png" },
+    { id: "strength", name: "Strength", part: 3, rarity: "rare", weight: 60, can_be_shiny: false, can_evolve: false, image: "https://static.jojowiki.com/images/b/ba/latest/20230206194005/Strength_Infobox_Anime.png" },
+    { id: "sun", name: "Sun", part: 3, rarity: "common", weight: 100, can_be_shiny: false, can_evolve: false, image: "https://static.jojowiki.com/images/f/fd/latest/20221008023104/Sun_Infobox_Anime.png" },
+    { id: "tenore sax", name: "Tenore Sax", part: 3, rarity: "common", weight: 100, can_be_shiny: false, can_evolve: false, image: "https://i.ibb.co/WWPvMZJx/image.png" },
+    { id: "tohth", name: "Tohth", part: 3, rarity: "uncommon", weight: 75, can_be_shiny: false, can_evolve: false, image: "https://static.jojowiki.com/images/0/09/latest/20211010231309/Tohth_Infobox_Anime.png" },
+    { id: "tower-of-gray", name: "Tower of Gray", part: 3, rarity: "common", weight: 100, can_be_shiny: false, can_evolve: false, image: "https://static.jojowiki.com/images/c/c2/latest/20220917233012/Tower_of_Gray_Infobox_Anime.png" },
+    { id: "the-world", name: "The World", part: 3, rarity: "legendary", weight: 5, can_be_shiny: true, can_evolve: true, image: "https://static.jojowiki.com/images/8/8d/latest/20251210224158/OraDora_The_World_1.png" },
+    { id: "wheel-of-fortune", name: "Wheel of Fortune", part: 3, rarity: "common", weight: 100, can_be_shiny: false, can_evolve: false, image: "https://static.jojowiki.com/images/b/b7/latest/20221008022642/Wheel_of_Fortune_Infobox_Anime.png" },
+    { id: "yellow-temperance", name: "Yellow Temperance", part: 3, rarity: "uncommon", weight: 75, can_be_shiny: false, can_evolve: false, image: "https://static.jojowiki.com/images/3/38/latest/20220917234459/Yellow_Temperance_Infobox_Anime.png" },
+    
     // ── Parte 4: Diamond is Unbreakable ────────────────────────────────────────
+    { id: "atchung-baby", name: "Achtung Baby", part: 4, rarity: "common", weight: 100, can_be_shiny: false, can_evolve: false, image: "https://i.ibb.co/qYq5FQCS/image.png" },
     { id: "crazy-diamond", name: "Crazy Diamond", part: 4, rarity: "epic", weight: 5, can_be_shiny: true, can_evolve: false, image: "https://static.wikia.nocookie.net/jjba/images/8/8a/Crazy_Diamond_Anime.png" },
     { id: "highway-star", name: "Highway Star", part: 4, rarity: "uncommon", weight: 40, can_be_shiny: false, can_evolve: false, image: "https://static.wikia.nocookie.net/jjba/images/b/b1/Highway_Star_Anime.png" },
     { id: "killer-queen", name: "Killer Queen", part: 4, rarity: "epic", weight: 5, can_be_shiny: true, can_evolve: true, evolution_item: "arrow-bites", image: "https://static.wikia.nocookie.net/jjba/images/f/fc/Killer_Queen_Anime.png" },
@@ -42,7 +60,8 @@ const stands = [
     { id: "sticky-fingers", name: "Sticky Fingers", part: 5, rarity: "epic", weight: 5, can_be_shiny: true, can_evolve: false, image: "https://static.wikia.nocookie.net/jjba/images/0/03/Sticky_Fingers_Anime.png" },
 
     // ── Parte 6: Stone Ocean ────────────────────────────────────────────────────
-    { id: "made-in-heaven", name: "Made in Heaven", part: 6, rarity: "legendary", weight: 1, can_be_shiny: true, can_evolve: false, image: "https://static.wikia.nocookie.net/jjba/images/9/9a/Made_in_Heaven_Anime.png" },
+    
+    
 ];
 
 async function ensureTable(name: string, keys: { hash: string; range?: string }) {
